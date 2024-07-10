@@ -47,7 +47,7 @@
             android:layout_gravity="center_horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnTrocarTexto"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,13 +55,27 @@
                 android:contentDescription="@string/mudar_texto"
                 android:onClick="iniciarMudarTexto"
                 app:icon="@drawable/baseline_edit_note_24"
-                app:layout_constraintBaseline_toBaselineOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarFundo"
+                app:layout_constraintEnd_toStartOf="@+id/btnTrocarCor"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnTrocarCor"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:contentDescription="@string/mudar_cor"
+                android:onClick="iniciarMudarTexto"
+                app:icon="@drawable/baseline_color_lens_24"
+                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarFundo"
+                app:layout_constraintEnd_toStartOf="@+id/btnTrocarFundo"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/btnTrocarTexto" />
+
+            <Button
+                android:id="@+id/btnTrocarFundo"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +85,7 @@
                 app:icon="@drawable/baseline_image_search_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button" />
+                app:layout_constraintStart_toEndOf="@+id/btnTrocarCor" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
