@@ -49,12 +49,24 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = result.getData();
                         if (intent != null) {
                             String novoTexto = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVO_TEXTO);
-                            String novaCor = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVA_COR);
+                            memeCreator.setTexto(novoTexto);
+                            mostrarImagem();
+                        }
+                    }
+                }
+            });
+    private final ActivityResultLauncher<Intent> startNovaCor = registerForActivityResult(new StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent intent = result.getData();
+                        if (intent != null) {
+                            String novaCor = intent.getStringExtra(NovaCorActivity.EXTRA_NOVA_COR);
                             if (novaCor == null) {
                                 Toast.makeText(MainActivity.this, "Cor desconhecida. Usando preto no lugar.", Toast.LENGTH_SHORT).show();
                                 novaCor = "BLACK";
                             }
-                            memeCreator.setTexto(novoTexto);
                             memeCreator.setCorTexto(Color.parseColor(novaCor.toUpperCase()));
                             mostrarImagem();
                         }
@@ -116,9 +128,15 @@ public class MainActivity extends AppCompatActivity {
     public void iniciarMudarTexto(View v) {
         Intent intent = new Intent(this, NovoTextoActivity.class);
         intent.putExtra(NovoTextoActivity.EXTRA_TEXTO_ATUAL, memeCreator.getTexto());
-        intent.putExtra(NovoTextoActivity.EXTRA_COR_ATUAL, converterCor(memeCreator.getCorTexto()));
 
         startNovoTexto.launch(intent);
+    }
+
+    public void iniciarMudarCor(View v){
+        Intent intent= new Intent(this, NovaCorActivity.class);
+        intent.putExtra(NovaCorActivity.EXTRA_COR_ATUAL, converterCor(memeCreator.getCorTexto()));
+
+        startNovaCor.launch(intent);
     }
 
     public String converterCor(int cor) {

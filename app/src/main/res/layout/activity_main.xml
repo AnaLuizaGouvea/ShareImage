@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:contentDescription="@string/mudar_cor"
-                android:onClick="iniciarMudarTexto"
+                android:onClick="iniciarMudarCor"
                 app:icon="@drawable/baseline_color_lens_24"
                 app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarFundo"
                 app:layout_constraintEnd_toStartOf="@+id/btnTrocarFundo"
