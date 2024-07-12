@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 
+import org.w3c.dom.Text;
+
 /**
  * Cria um meme com um texto e uma imagem de fundo.
  *
@@ -19,14 +21,16 @@ public class MemeCreator {
     private DisplayMetrics displayMetrics;
     private Bitmap meme;
     private boolean dirty; // se true, significa que o meme precisa ser recriado.
+    private float textSize;
 
-    public MemeCreator(String texto, int corTexto, Bitmap fundo, DisplayMetrics displayMetrics) {
+    public MemeCreator(String texto, int corTexto, Bitmap fundo, DisplayMetrics displayMetrics, float textSize) {
         this.texto = texto;
         this.corTexto = corTexto;
         this.fundo = fundo;
         this.displayMetrics = displayMetrics;
         this.meme = criarImagem();
-        this.dirty = false;
+        this.dirty = true;
+        this.textSize = textSize;
     }
 
     public String getTexto() {
@@ -70,6 +74,16 @@ public class MemeCreator {
         }
         return meme;
     }
+
+    public float getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(float textSize) {
+        this.textSize = textSize;
+        dirty = true;
+    }
+
     protected Bitmap criarImagem() {
         float heightFactor = (float) fundo.getHeight() / fundo.getWidth();
         int width = displayMetrics.widthPixels;
@@ -89,7 +103,7 @@ public class MemeCreator {
 
         paint.setColor(corTexto);
         paint.setAntiAlias(true);
-        paint.setTextSize(64.f);
+        paint.setTextSize(textSize);
         paint.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
         paint.setTextAlign(Paint.Align.CENTER);
         // desenhar texto em cima

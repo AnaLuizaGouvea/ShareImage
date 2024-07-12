@@ -8,7 +8,7 @@
     tools:context=".NovaCorActivity">
 
     <EditText
-        android:id="@+id/etCor"
+        android:id="@+id/etFonte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,7 +28,7 @@
         android:onClick="enviarNovaCor"
         android:text="@string/salvar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCor" />
+        app:layout_constraintTop_toBottomOf="@+id/etFonte" />
 
     <TextView
         android:id="@+id/textView"

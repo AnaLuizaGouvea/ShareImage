@@ -16,7 +16,7 @@ public class NovaCorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_cor);
 
-        etCor = findViewById(R.id.etCor);
+        etCor = findViewById(R.id.etFonte);
 
         Intent intent = getIntent();
         String corAtual = intent.getStringExtra(EXTRA_COR_ATUAL);

@@ -31,10 +31,31 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="8dp"
         android:onClick="enviarNovoTexto"
         android:text="@string/salvar"
+        app:layout_constraintStart_toStartOf="@+id/etFonte"
+        app:layout_constraintTop_toBottomOf="@+id/etFonte" />
+
+    <EditText
+        android:id="@+id/etFonte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/mudar_tamanho_fonte"
+        app:layout_constraintStart_toStartOf="@+id/etTexto"
         app:layout_constraintTop_toBottomOf="@+id/etTexto"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:text="Mudar Fonte" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
