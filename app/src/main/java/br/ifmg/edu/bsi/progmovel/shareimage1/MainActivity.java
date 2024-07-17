@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private MemeCreator memeCreator;
+
     private final ActivityResultLauncher<Intent> startNovoTexto = registerForActivityResult(new StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -48,15 +49,20 @@ public class MainActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent intent = result.getData();
                         if (intent != null) {
-                            String novoTexto = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVO_TEXTO);
+
+                            String novoTextoSuperior = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVO_TEXTO_SUPERIOR);
+                            String novoTextoInferior = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVO_TEXTO_INFERIOR);
                             String novoTamanhoFonte = intent.getStringExtra(NovoTextoActivity.EXTRA_NOVO_TAMANHO_FONTE);
-                            memeCreator.setTexto(novoTexto);
+
+                            memeCreator.setTextoSuperior(novoTextoSuperior); //mudar o set
+                            memeCreator.setTextoInferior(novoTextoInferior);
                             memeCreator.setTextSize(Float.parseFloat(novoTamanhoFonte));
                             mostrarImagem();
                         }
                     }
                 }
             });
+
     private final ActivityResultLauncher<Intent> startNovaCor = registerForActivityResult(new StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -64,12 +70,23 @@ public class MainActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent intent = result.getData();
                         if (intent != null) {
-                            String novaCor = intent.getStringExtra(NovaCorActivity.EXTRA_NOVA_COR);
-                            if (novaCor == null) {
+                            String novaCorInferior = intent.getStringExtra(NovaCorActivity.EXTRA_NOVA_COR_INFERIOR);
+                            if (novaCorInferior == null || novaCorInferior.isEmpty() || novaCorInferior.equals("")) {
                                 Toast.makeText(MainActivity.this, "Cor desconhecida. Usando preto no lugar.", Toast.LENGTH_SHORT).show();
-                                novaCor = "BLACK";
+                                novaCorInferior = "BLACK";
                             }
-                            memeCreator.setCorTexto(Color.parseColor(novaCor.toUpperCase()));
+
+                            String novaCorSuperior = intent.getStringExtra(NovaCorActivity.EXTRA_NOVA_COR_SUPERIOR);
+                            if (novaCorSuperior == null || novaCorSuperior.isEmpty() || novaCorSuperior.equals("")) {
+                                Toast.makeText(MainActivity.this, "Cor desconhecida. Usando preto no lugar.", Toast.LENGTH_SHORT).show();
+                                novaCorSuperior = "BLACK";
+                            }
+
+
+
+                            memeCreator.setCorTextoSuperior(Color.parseColor(novaCorSuperior.toUpperCase()));
+                            memeCreator.setCorTextoInferior(Color.parseColor(novaCorInferior.toUpperCase()));
+
                             mostrarImagem();
                         }
                     }
@@ -123,13 +140,15 @@ public class MainActivity extends AppCompatActivity {
 
         Bitmap imagemFundo = BitmapFactory.decodeResource(getResources(), R.drawable.fry_meme);
 
-        memeCreator = new MemeCreator("Olá Android!", Color.WHITE, imagemFundo, getResources().getDisplayMetrics(), 64f);
+        memeCreator = new MemeCreator("Olá Texto Superior!","Olá texto Inferior!", Color.WHITE, Color.WHITE, imagemFundo, getResources().getDisplayMetrics(), 64f);
         mostrarImagem();
     }
 
     public void iniciarMudarTexto(View v) {
         Intent intent = new Intent(this, NovoTextoActivity.class);
-        intent.putExtra(NovoTextoActivity.EXTRA_TEXTO_ATUAL, memeCreator.getTexto());
+
+        intent.putExtra(NovoTextoActivity.EXTRA_TEXTO_ATUAL_SUPERIOR, memeCreator.getTextoSuperior()); //terminar de fazer mudar o get
+        intent.putExtra(NovoTextoActivity.EXTRA_TEXTO_ATUAL_INFERIOR, memeCreator.getTextoInferior());
         intent.putExtra(NovoTextoActivity.EXTRA_TAMANHO_FONTE_ATUAL, memeCreator.getTextSize());
 
         startNovoTexto.launch(intent);
@@ -137,7 +156,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void iniciarMudarCor(View v){
         Intent intent= new Intent(this, NovaCorActivity.class);
-        intent.putExtra(NovaCorActivity.EXTRA_COR_ATUAL, converterCor(memeCreator.getCorTexto()));
+
+        intent.putExtra(NovaCorActivity.EXTRA_COR_ATUAL_SUPERIOR, converterCor(memeCreator.getCorTextoSuperior()));
+        intent.putExtra(NovaCorActivity.EXTRA_COR_ATUAL_INFERIOR, converterCor(memeCreator.getCorTextoInferior()));
 
         startNovaCor.launch(intent);
     }
