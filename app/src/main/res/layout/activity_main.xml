@@ -55,7 +55,7 @@
                 android:contentDescription="@string/mudar_texto"
                 android:onClick="iniciarMudarTexto"
                 app:icon="@drawable/baseline_edit_note_24"
-                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarFundo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarTemplate"
                 app:layout_constraintEnd_toStartOf="@+id/btnTrocarCor"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -69,26 +69,26 @@
                 android:contentDescription="@string/mudar_cor"
                 android:onClick="iniciarMudarCor"
                 app:icon="@drawable/baseline_color_lens_24"
-                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarFundo"
-                app:layout_constraintEnd_toStartOf="@+id/btnTrocarFundo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/btnTrocarTemplate"
+                app:layout_constraintEnd_toStartOf="@+id/btnTrocarTemplate"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/btnTrocarTexto" />
 
             <Button
-                android:id="@+id/btnTrocarFundo"
+                android:id="@+id/btnTrocarTemplate"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:contentDescription="@string/mudar_fundo"
+                android:contentDescription="@string/mudar_template"
                 android:onClick="iniciarMudarTemplate"
-                app:icon="@drawable/baseline_image_search_24"
+                app:icon="@drawable/baseline_add_to_home_screen_24"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnTemplate"
+                app:layout_constraintEnd_toStartOf="@id/btnTrocarFundo"
                 app:layout_constraintStart_toEndOf="@+id/btnTrocarCor" />
 
             <Button
-                android:id="@+id/btnTemplate"
+                android:id="@+id/btnTrocarFundo"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 app:icon="@drawable/baseline_image_search_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnTrocarFundo" />
+                app:layout_constraintStart_toEndOf="@+id/btnTrocarTemplate" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>

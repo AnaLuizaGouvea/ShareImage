@@ -46,6 +46,7 @@
     <string name="criador_de_meme">Criador de Meme</string>
     <string name="mudar_texto">Mudar Texto</string>
     <string name="mudar_fundo">Mudar fundo</string>
+    <string name="mudar_template">Mudar template</string>
     <string name="compartilhar">Compartilhar</string>
     <string name="novo_texto_inferior">Novo texto Inferior</string>
     <string name="salvar">Salvar</string>
