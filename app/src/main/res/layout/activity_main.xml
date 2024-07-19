@@ -65,7 +65,7 @@
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
+                android:layout_marginStart="8dp"
                 android:contentDescription="@string/mudar_cor"
                 android:onClick="iniciarMudarCor"
                 app:icon="@drawable/baseline_color_lens_24"
@@ -79,13 +79,27 @@
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/mudar_fundo"
+                android:onClick="iniciarMudarTemplate"
+                app:icon="@drawable/baseline_image_search_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnTemplate"
+                app:layout_constraintStart_toEndOf="@+id/btnTrocarCor" />
+
+            <Button
+                android:id="@+id/btnTemplate"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:contentDescription="@string/mudar_fundo"
                 android:onClick="iniciarMudarFundo"
                 app:icon="@drawable/baseline_image_search_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnTrocarCor" />
+                app:layout_constraintStart_toEndOf="@+id/btnTrocarFundo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>

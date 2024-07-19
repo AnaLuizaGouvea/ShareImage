@@ -63,6 +63,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+    public void iniciarMudarTemplate(View view) {
+        Intent intent = new Intent(this, TemplateActivity.class);
+        startMudaTemplate.launch(intent);
+    }
+    private final ActivityResultLauncher<Intent> startMudaTemplate = registerForActivityResult(new StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent intent = result.getData();
+                        if (intent != null) {
+
+
+                            byte[] novoTemplate = intent.getByteArrayExtra(TemplateActivity.EXTRA_TEMPLATE_NOVO);
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(novoTemplate, 0, novoTemplate.length);
+                            memeCreator.setFundo(bitmap);
+
+
+                            mostrarImagem();
+                        }
+                    }
+                }
+            });
+
+
+
     private final ActivityResultLauncher<Intent> startNovaCor = registerForActivityResult(new StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -163,6 +189,13 @@ public class MainActivity extends AppCompatActivity {
         startNovaCor.launch(intent);
     }
 
+    public void iniciarMudarFundo(View v) {
+        startImagemFundo.launch(new PickVisualMediaRequest.Builder()
+                .setMediaType(ImageOnly.INSTANCE)
+                .build());
+    }
+
+
     public String converterCor(int cor) {
         switch (cor) {
             case Color.BLACK: return "BLACK";
@@ -175,11 +208,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public void iniciarMudarFundo(View v) {
-        startImagemFundo.launch(new PickVisualMediaRequest.Builder()
-                .setMediaType(ImageOnly.INSTANCE)
-                .build());
-    }
+
 
     public void compartilhar(View v) {
         compartilharImagem(memeCreator.getImagem());
